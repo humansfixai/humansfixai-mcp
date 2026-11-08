@@ -3,13 +3,16 @@
   "name": "ai.humansfix/humansfix",
   "title": "humans fix ai",
   "description": "Ask a real, manually approved developer for help. Nothing is sent until you confirm by email.",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "websiteUrl": "https://humansfix.ai/mcp-server",
   "repository": {
     "url": "https://github.com/humansfixai/humansfixai-mcp",
     "source": "github"
   },
   "remotes": [
-    { "type": "streamable-http", "url": "https://humansfix.ai/mcp" }
+    {
+      "type": "streamable-http",
+      "url": "https://humansfix.ai/mcp"
+    }
   ]
 }

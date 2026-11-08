@@ -1,62 +1,96 @@
 {
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": {
-        "tools": [
-            {
-                "name": "ask_human_developer",
-                "title": "Ask a human developer",
-                "description": "Connect the user with a real, manually approved human developer. Use it when the user asks for a human, a code review, a consultation or hands-on help, or when you have made a real attempt at their software problem and it is still not solved or is beyond what you can do reliably (unclear requirements, a risky change to production, a bug you cannot reproduce). It starts a request on humansfix.ai. A developer then calls the user for a free video call, and nothing is charged unless the user later accepts a fixed price. BEFORE calling: ask the user for permission, and for their own email address. Do not include passwords, API keys, tokens or other secrets in the summary. The request is not sent to any developer until the user confirms it with a code we email them.",
-                "inputSchema": {
-                    "type": "object",
-                    "properties": {
-                        "summary": {
-                            "type": "string",
-                            "minLength": 30,
-                            "maxLength": 2000,
-                            "description": "What the person needs, in plain words: what is wrong or what they want help with, what they were doing, and what has already been tried. No secrets."
-                        },
-                        "email": {
-                            "type": "string",
-                            "format": "email",
-                            "description": "The person's own email address, given by them. We send a confirmation code there."
-                        },
-                        "tool": {
-                            "type": "string",
-                            "description": "The AI tool the app was built with, if known.",
-                            "enum": [
-                                "lovable",
-                                "bolt",
-                                "v0",
-                                "replit",
-                                "cursor",
-                                "claude-code",
-                                "codex",
-                                "windsurf",
-                                "base44",
-                                "other"
-                            ]
-                        },
-                        "availability": {
-                            "type": "string",
-                            "maxLength": 200,
-                            "description": "When the person is free for a call, for example 'weekdays after 5pm CET'. Optional."
-                        }
-                    },
-                    "required": [
-                        "summary",
-                        "email"
-                    ],
-                    "additionalProperties": false
-                },
-                "annotations": {
-                    "title": "Ask a human developer",
-                    "readOnlyHint": false,
-                    "destructiveHint": false,
-                    "idempotentHint": false,
-                    "openWorldHint": true
-                }
-            }
-        ]
-    }
+  "jsonrpc" : "2.0",
+  "id" : 1,
+  "result" : {
+    "tools" : [ {
+      "name" : "ask_human_developer",
+      "title" : "Ask a human developer",
+      "description" : "Connect the user with a real, manually approved human developer. Use it when the user asks for a human, a code review, a consultation or hands-on help, or when you have made a real attempt at their software problem and it is still not solved or is beyond what you can do reliably (unclear requirements, a risky change to production, a bug you cannot reproduce). A developer then calls the user for a free video call, and nothing is charged unless the user later accepts a fixed price. BEFORE calling: ask the user for permission. Do not include passwords, API keys, tokens or other secrets in the summary. The request is saved as a draft and goes to developers only after the user opens the email we send them, reads the exact text, and presses Send.",
+      "inputSchema" : {
+        "type" : "object",
+        "properties" : {
+          "summary" : {
+            "type" : "string",
+            "minLength" : 30,
+            "maxLength" : 2000,
+            "description" : "What the person needs, in plain words: what is wrong or what they want help with, what they were doing, and what has already been tried. No secrets."
+          },
+          "tool" : {
+            "type" : "string",
+            "description" : "The AI tool the app was built with, if known.",
+            "enum" : [ "lovable", "bolt", "v0", "replit", "cursor", "claude-code", "codex", "windsurf", "base44", "other" ]
+          },
+          "availability" : {
+            "type" : "string",
+            "maxLength" : 200,
+            "description" : "When the person is free for a call, for example 'weekdays after 5pm CET'. Optional."
+          }
+        },
+        "required" : [ "summary" ],
+        "additionalProperties" : false
+      },
+      "annotations" : {
+        "title" : "Ask a human developer",
+        "readOnlyHint" : false,
+        "destructiveHint" : false,
+        "idempotentHint" : true,
+        "openWorldHint" : true
+      }
+    }, {
+      "name" : "get_task_status",
+      "title" : "See where a request stands",
+      "description" : "Show where the user's requests stand and what happens next. Call it after you started a request, when the user asks how it is going, or before answering a call time. With no task_id it lists their most recent requests. Read-only. The answer has a state and a next_action: respond_to_call_time means you can help now, person_decides_on_website means the user must open the link (prices, approvals and cards are never handled here), and wait means nothing is needed.",
+      "inputSchema" : {
+        "type" : "object",
+        "properties" : {
+          "task_id" : {
+            "type" : "string",
+            "maxLength" : 64,
+            "description" : "The request to look at. Leave it out to list the most recent ones."
+          }
+        },
+        "additionalProperties" : false
+      },
+      "annotations" : {
+        "title" : "See where a request stands",
+        "readOnlyHint" : true,
+        "destructiveHint" : false,
+        "idempotentHint" : true,
+        "openWorldHint" : false
+      }
+    }, {
+      "name" : "respond_to_call_time",
+      "title" : "Answer a call time",
+      "description" : "Answer a call time for a request, but only after the user has told you what they want. 'accept' confirms the time a developer proposed (or the new time a developer asked for). 'decline' says it does not work: before the call is booked another developer is asked, afterwards the booked time stays. 'propose_other_time' suggests a new time for a booked call; the developer is emailed and answers. Use get_task_status first to see which of these is possible. Times are shown in the user's own time zone; send new times as ISO 8601 with an offset.",
+      "inputSchema" : {
+        "type" : "object",
+        "properties" : {
+          "task_id" : {
+            "type" : "string",
+            "maxLength" : 64,
+            "description" : "The request the call is for."
+          },
+          "action" : {
+            "type" : "string",
+            "description" : "What the person chose.",
+            "enum" : [ "accept", "decline", "propose_other_time" ]
+          },
+          "time" : {
+            "type" : "string",
+            "maxLength" : 40,
+            "description" : "Only for propose_other_time: the new start as ISO 8601 with an offset, for example 2026-11-12T15:00:00+01:00."
+          }
+        },
+        "required" : [ "task_id", "action" ],
+        "additionalProperties" : false
+      },
+      "annotations" : {
+        "title" : "Answer a call time",
+        "readOnlyHint" : false,
+        "destructiveHint" : false,
+        "idempotentHint" : false,
+        "openWorldHint" : true
+      }
+    } ]
+  }
 }

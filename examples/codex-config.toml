@@ -1,4 +1,6 @@
 # Add this to ~/.codex/config.toml, or run:
 #   codex mcp add humansfix --url https://humansfix.ai/mcp
+# then sign in once:
+#   codex mcp login humansfix
 [mcp_servers.humansfix]
 url = "https://humansfix.ai/mcp"
