@@ -1,0 +1,62 @@
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "tools": [
+            {
+                "name": "ask_human_developer",
+                "title": "Ask a human developer",
+                "description": "Connect the user with a real, manually approved human developer. Use it when the user asks for a human, a code review, a consultation or hands-on help, or when you have made a real attempt at their software problem and it is still not solved or is beyond what you can do reliably (unclear requirements, a risky change to production, a bug you cannot reproduce). It starts a request on humansfix.ai. A developer then calls the user for a free video call, and nothing is charged unless the user later accepts a fixed price. BEFORE calling: ask the user for permission, and for their own email address. Do not include passwords, API keys, tokens or other secrets in the summary. The request is not sent to any developer until the user confirms it with a code we email them.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "summary": {
+                            "type": "string",
+                            "minLength": 30,
+                            "maxLength": 2000,
+                            "description": "What the person needs, in plain words: what is wrong or what they want help with, what they were doing, and what has already been tried. No secrets."
+                        },
+                        "email": {
+                            "type": "string",
+                            "format": "email",
+                            "description": "The person's own email address, given by them. We send a confirmation code there."
+                        },
+                        "tool": {
+                            "type": "string",
+                            "description": "The AI tool the app was built with, if known.",
+                            "enum": [
+                                "lovable",
+                                "bolt",
+                                "v0",
+                                "replit",
+                                "cursor",
+                                "claude-code",
+                                "codex",
+                                "windsurf",
+                                "base44",
+                                "other"
+                            ]
+                        },
+                        "availability": {
+                            "type": "string",
+                            "maxLength": 200,
+                            "description": "When the person is free for a call, for example 'weekdays after 5pm CET'. Optional."
+                        }
+                    },
+                    "required": [
+                        "summary",
+                        "email"
+                    ],
+                    "additionalProperties": false
+                },
+                "annotations": {
+                    "title": "Ask a human developer",
+                    "readOnlyHint": false,
+                    "destructiveHint": false,
+                    "idempotentHint": false,
+                    "openWorldHint": true
+                }
+            }
+        ]
+    }
+}
