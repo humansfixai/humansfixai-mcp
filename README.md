@@ -5,7 +5,7 @@
 When Claude Code, Codex, Cursor or another assistant reaches something it cannot solve on its own, it can ask a real developer to help you, and follow the request through to the free call. You connect once, you stay in charge, and nothing is charged.
 
 - Website and setup page: <https://humansfix.ai/mcp-server>
-- Connector address: `https://humansfix.ai/mcp` (Streamable HTTP, sign in once with your email)
+- Connector address: `https://humansfix.ai/mcp` (Streamable HTTP, sign in once with Google)
 - Server card: <https://humansfix.ai/mcp/server-card>
 - Official MCP Registry name: `ai.humansfix/humansfix`
 
@@ -19,11 +19,11 @@ AI coding agents are very good until they are not. A requirement is unclear, a c
 - **See where your request stands** and what happens next.
 - **Answer a call time**: accept the time a developer proposed, say it does not work, or propose another time for a booked call.
 
-Your agent asks you first. Nothing reaches a developer until you read the exact text on our site and press Send. A developer then proposes a time for a free video call, and most problems are solved there. If more work is needed, you get one fixed price and decide whether to accept it on our website. You pay only after you approve the result.
+Your agent asks you first. Nothing reaches a developer until it has shown you the exact text and you have said yes. A developer then proposes a time for a free video call, and most problems are solved there. If more work is needed, you get one fixed price and decide whether to accept it on our website. You pay only after you approve the result.
 
 ## Connect it
 
-The first time your assistant uses the connector, it opens a page on our site: enter your email, open the link we send you, and press Allow. That is the whole sign-in. No password, no key.
+The first time your assistant uses the connector, it opens a page on our site: choose **Continue with Google** and press Allow. That is the whole sign-in. No password, no key.
 
 **Claude Code**
 
@@ -61,7 +61,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in one project, then 
 
 **Claude on the web**
 
-Open **Settings**, then **Connectors**, choose **Add custom connector**, paste `https://humansfix.ai/mcp` and give it a name.
+Open **Settings**, then **Connectors**, choose **Add custom connector**, paste `https://humansfix.ai/mcp` and give it a name. Under Authentication choose **Sign in now**. The detected "No sign-in" is not right for this connector, because calling a tool needs you to be signed in.
 
 Any other assistant that supports remote MCP servers can use the same address. Menus and commands change from time to time, so check your assistant's own help if a step looks different.
 
@@ -69,7 +69,7 @@ Any other assistant that supports remote MCP servers can use the same address. M
 
 1. Your agent asks for your permission before it does anything.
 2. It sends us a short summary of the problem. It must not include passwords or keys, and we refuse text that looks like one.
-3. We email you a link. The request stays private, and no developer sees it, until you open the link, read the exact text on our site and press Send.
+3. Your agent shows you the exact text it saved. The request stays private, and no developer sees it, until you say yes and your agent sends it. We email you a copy with a link to cancel it.
 4. A developer proposes a time. Your agent can show it to you, and you confirm it, or say it does not work, right in the chat. You get a calendar invite and reminders by email.
 5. The free video call. The problem is solved there, or you get one fixed price. Accepting a price, adding a card and approving the work always happen on our website, and your agent gives you the link.
 
@@ -86,7 +86,7 @@ You can disconnect it at any time in **Settings**, under **Connected assistants*
 - We keep the summary and your email, like any request made on our site.
 - We keep a record that you connected your assistant: its name, when you connected it, when it last used the connection, and what it may do. It lasts until you disconnect it. Its access keys are stored only in a form nobody can read back.
 - We never see your code, your files or your conversation with the agent. We only get what the agent chooses to send.
-- Nothing is published and nobody is contacted until you read the text and press Send.
+- Nothing is published and nobody is contacted until you have read the text and said yes.
 - The connector never charges anything and never handles payment.
 - We limit how many requests can be started, and how many emails one address can receive.
 
@@ -111,11 +111,12 @@ The full definitions, as the server returns them, are in [`docs/tool-schema.json
 
 | Tool | Needs | Arguments | What it does |
 |---|---|---|---|
-| `ask_human_developer` | `tasks.write` | `summary` (required, 30 to 2000 characters, no secrets); `tool`, `availability` (optional) | Saves a draft and emails the person a link to read and send it. Nothing reaches a developer before that. |
+| `ask_human_developer` | `tasks.write` | `summary` (required, 30 to 2000 characters, no secrets); `tool`, `availability` (optional) | Only saves a draft and returns the exact text, which the agent shows the person. Nothing reaches a developer. |
+| `send_request` | `tasks.write` | `task_id` (required) | Sends the draft this connection saved in the last 30 minutes, after the person said yes. A person can send a few per day, and we email them a copy with a link to cancel. |
 | `get_task_status` | `tasks.read` | `task_id` (optional) | Returns a fixed `state`, a `next_action`, the call time in the person's own time zone, and a link to our page. It never returns text a developer wrote. |
 | `respond_to_call_time` | `tasks.write` | `task_id`, `action` (`accept`, `decline`, `propose_other_time`), `time` (ISO 8601 with an offset, only for `propose_other_time`) | Answers a proposed call time, or proposes a new one for a booked call. |
 
-`next_action` is one of `respond_to_call_time`, `person_decides_on_website`, `join_call`, `wait`, `person_reviews_email` or `none`. Errors come back as tool results with `isError` set, so the model can correct itself. Prices, cards, approvals and tips are not part of the connector.
+`next_action` is one of `send_request`, `respond_to_call_time`, `person_decides_on_website`, `join_call`, `wait` or `none`. Errors come back as tool results with `isError` set, so the model can correct itself. Prices, cards, approvals and tips are not part of the connector.
 
 ### Check that it works
 
@@ -126,7 +127,7 @@ curl -s -X POST https://humansfix.ai/mcp \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
 ```
 
-The answer lists three tools. Calling one without a token returns `401` with the sign-in pointer described above.
+The answer lists four tools. Calling one without a token returns `401` with the sign-in pointer described above.
 
 ## Contact and security
 

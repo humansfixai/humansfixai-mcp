@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "ai.humansfix/humansfix",
   "title": "humans fix ai",
-  "description": "Ask a real, manually approved developer for help. Nothing is sent until you confirm by email.",
+  "description": "Ask a real, manually approved developer for help. Nothing is sent until you say yes.",
   "version": "2.0.0",
   "websiteUrl": "https://humansfix.ai/mcp-server",
   "repository": {
