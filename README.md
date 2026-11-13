@@ -135,7 +135,7 @@ The full definitions, as the server returns them, are in [`docs/tool-schema.json
 | Tool | Needs | Arguments | What it does |
 |---|---|---|---|
 | `ask_human_developer` | `tasks.write` | `summary` (required, 30 to 2000 characters, no secrets); `tool`, `availability` (optional) | Only saves a draft and returns the exact text, which the agent shows the person. Nothing reaches a developer. |
-| `send_request` | `tasks.write` | `task_id` (required) | Sends the draft this connection saved in the last 30 minutes, after the person said yes. A person can send a few per day, and we email them a copy with a link to cancel. |
+| `send_request` | `tasks.write` | `task_id` (required); `text` (optional, the exact saved text; nothing is sent if it differs) | Sends the draft this connection saved in the last 30 minutes, after the person said yes. A person can send a few per day, and we email them a copy with a link to cancel. |
 | `get_task_status` | `tasks.read` | `task_id` (optional) | Returns a fixed `state`, a `next_action`, the call time in the person's own time zone, and a link to our page. It never returns text a developer wrote. |
 | `respond_to_call_time` | `tasks.write` | `task_id`, `action` (`accept`, `decline`, `propose_other_time`), `time` (ISO 8601 with an offset, only for `propose_other_time`) | Answers a proposed call time, or proposes a new one for a booked call. |
 
