@@ -5,6 +5,7 @@
 **Give your AI coding agent a human to call.** When Claude Code, Codex, Cursor or another assistant keeps failing at something, it can ask a real, manually approved developer to help you, and follow the request through to a free 15-minute video call. You connect once, you approve every request, and nothing is charged.
 
 <p align="center">
+  <a href="https://claude.ai/directory/humansfixai"><img alt="Add in Claude" src="https://img.shields.io/badge/Add_in-Claude-ea580c?style=for-the-badge"></a>
   <a href="https://cursor.com/en/install-mcp?name=humansfix&config=eyJ1cmwiOiJodHRwczovL2h1bWFuc2ZpeC5haS9tY3AifQ=="><img alt="Add to Cursor" src="https://img.shields.io/badge/Add_to-Cursor-ea580c?style=for-the-badge"></a>
   <a href="https://insiders.vscode.dev/redirect/mcp/install?name=humansfix&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fhumansfix.ai%2Fmcp%22%7D"><img alt="Install in VS Code" src="https://img.shields.io/badge/Install_in-VS_Code-1c1917?style=for-the-badge"></a>
   <a href="#connect-it"><img alt="Claude Code and Codex" src="https://img.shields.io/badge/Claude_Code_%7C_Codex-one_command-1c1917?style=for-the-badge"></a>
@@ -73,7 +74,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in one project, then 
 
 **Claude on the web**
 
-Open **Settings**, then **Connectors**, choose **Add custom connector**, paste `https://humansfix.ai/mcp` and give it a name. Under Authentication choose **Sign in now**. The detected "No sign-in" is not right for this connector, because calling a tool needs you to be signed in.
+The quickest way is the [humans fix ai page in the Claude directory](https://claude.ai/directory/humansfixai): press Add and sign in. Or add it by hand: open **Settings**, then **Connectors**, choose **Add custom connector**, paste `https://humansfix.ai/mcp` and give it a name. Under Authentication choose **Sign in now**. The detected "No sign-in" is not right for this connector, because calling a tool needs you to be signed in.
 
 Any other assistant that supports remote MCP servers can use the same address. Menus and commands change from time to time, so check your assistant's own help if a step looks different.
 
