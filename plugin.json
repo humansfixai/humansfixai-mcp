@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "humansfix",
+  "version": "2.0.0",
+  "description": "Ask a real, manually approved developer for help from your AI coding tool. Nothing is sent until you say yes. The first 15-minute call is free.",
+  "author": { "name": "humans fix ai", "email": "hello@humansfix.ai", "url": "https://humansfix.ai" },
+  "homepage": "https://humansfix.ai/mcp-server",
+  "repository": "https://github.com/humansfixai/humansfixai-mcp",
+  "license": "MIT",
+  "keywords": ["mcp", "developer-help", "code-review", "debugging"]
+}

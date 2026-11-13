@@ -86,8 +86,8 @@ Add a short rule to your agent's instructions and it will offer a human at the m
 |---|---|---|
 | Claude Code | [`agent-rules/CLAUDE.md`](agent-rules/CLAUDE.md) | Append to your project's `CLAUDE.md` |
 | Codex and others | [`agent-rules/AGENTS.md`](agent-rules/AGENTS.md) | Append to `AGENTS.md` |
-| Cursor | [`agent-rules/cursor/humansfix.mdc`](agent-rules/cursor/humansfix.mdc) | Save as `.cursor/rules/humansfix.mdc` |
-| Claude Code skill | [`agent-rules/claude-code-skill/SKILL.md`](agent-rules/claude-code-skill/SKILL.md) | Save as `~/.claude/skills/ask-a-human/SKILL.md` |
+| Cursor | [`rules/humansfix.mdc`](rules/humansfix.mdc) | Save as `.cursor/rules/humansfix.mdc` |
+| Claude Code skill | [`skills/ask-a-human/SKILL.md`](skills/ask-a-human/SKILL.md) | Save as `~/.claude/skills/ask-a-human/SKILL.md` |
 
 ## What happens when your agent uses it
 
