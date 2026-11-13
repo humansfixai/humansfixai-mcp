@@ -78,6 +78,14 @@ The quickest way is the [humans fix ai page in the Claude directory](https://cla
 
 Any other assistant that supports remote MCP servers can use the same address. Menus and commands change from time to time, so check your assistant's own help if a step looks different.
 
+## Who answers your request
+
+Every request is picked up by a real developer, not a bot. Developers are approved by hand before they can see any request, and the first call is free.
+
+<img src="assets/people.svg" alt="Illustration of the kinds of help a real developer gives: code review, deploy fixes, pre-launch checks and a free call" width="100%">
+
+<img src="assets/vetting.svg" alt="How developers are approved: apply, reviewed by hand, approved, then they take requests" width="100%">
+
 ## Let your agent suggest it
 
 Add a short rule to your agent's instructions and it will offer a human at the moment you need one: when it has failed at the same problem several times. It still asks you first, and it never sends anything without your yes.
