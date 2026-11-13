@@ -1,8 +1,20 @@
+<p align="center"><img src="assets/banner.svg" alt="humans fix ai: when your AI hits a wall, a real developer joins" width="100%"></p>
+
 # humans fix ai: MCP connector
 
-**Give your AI coding agent a human to call.**
+**Give your AI coding agent a human to call.** When Claude Code, Codex, Cursor or another assistant keeps failing at something, it can ask a real, manually approved developer to help you, and follow the request through to a free 15-minute video call. You connect once, you approve every request, and nothing is charged.
 
-When Claude Code, Codex, Cursor or another assistant reaches something it cannot solve on its own, it can ask a real developer to help you, and follow the request through to the free call. You connect once, you stay in charge, and nothing is charged.
+<p align="center">
+  <a href="https://cursor.com/en/install-mcp?name=humansfix&config=eyJ1cmwiOiJodHRwczovL2h1bWFuc2ZpeC5haS9tY3AifQ=="><img alt="Add to Cursor" src="https://img.shields.io/badge/Add_to-Cursor-ea580c?style=for-the-badge"></a>
+  <a href="https://insiders.vscode.dev/redirect/mcp/install?name=humansfix&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fhumansfix.ai%2Fmcp%22%7D"><img alt="Install in VS Code" src="https://img.shields.io/badge/Install_in-VS_Code-1c1917?style=for-the-badge"></a>
+  <a href="#connect-it"><img alt="Claude Code and Codex" src="https://img.shields.io/badge/Claude_Code_%7C_Codex-one_command-1c1917?style=for-the-badge"></a>
+</p>
+
+<p align="center"><img src="assets/demo.svg" alt="Demo: the agent fails three times, offers a developer, shows the exact text, and sends it after the user says yes" width="720"></p>
+
+## From your chat to a free call
+
+<img src="assets/flow.svg" alt="Five steps: ask in your chat, you say yes, a developer picks it up, free 15-minute call, one fixed price if you need more" width="100%">
 
 - Website and setup page: <https://humansfix.ai/mcp-server>
 - Connector address: `https://humansfix.ai/mcp` (Streamable HTTP, sign in once with Google)
@@ -64,6 +76,17 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in one project, then 
 Open **Settings**, then **Connectors**, choose **Add custom connector**, paste `https://humansfix.ai/mcp` and give it a name. Under Authentication choose **Sign in now**. The detected "No sign-in" is not right for this connector, because calling a tool needs you to be signed in.
 
 Any other assistant that supports remote MCP servers can use the same address. Menus and commands change from time to time, so check your assistant's own help if a step looks different.
+
+## Let your agent suggest it
+
+Add a short rule to your agent's instructions and it will offer a human at the moment you need one: when it has failed at the same problem several times. It still asks you first, and it never sends anything without your yes.
+
+| Tool | File | Where it goes |
+|---|---|---|
+| Claude Code | [`agent-rules/CLAUDE.md`](agent-rules/CLAUDE.md) | Append to your project's `CLAUDE.md` |
+| Codex and others | [`agent-rules/AGENTS.md`](agent-rules/AGENTS.md) | Append to `AGENTS.md` |
+| Cursor | [`agent-rules/cursor/humansfix.mdc`](agent-rules/cursor/humansfix.mdc) | Save as `.cursor/rules/humansfix.mdc` |
+| Claude Code skill | [`agent-rules/claude-code-skill/SKILL.md`](agent-rules/claude-code-skill/SKILL.md) | Save as `~/.claude/skills/ask-a-human/SKILL.md` |
 
 ## What happens when your agent uses it
 

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 480" role="img" aria-label="humans fix ai: when your AI hits a wall, a real developer joins">
+<rect width="1280" height="480" fill="#fafaf9"/><rect width="1280" height="8" fill="#ea580c"/>
+<text x="80" y="140" font-family="Space Grotesk,Inter,system-ui,sans-serif" font-weight="700" font-size="30" fill="#ea580c">humans fix ai</text>
+<text x="80" y="222" font-family="Space Grotesk,Inter,system-ui,sans-serif" font-weight="700" font-size="58" fill="#1c1917">When your AI hits a wall,</text>
+<text x="80" y="290" font-family="Space Grotesk,Inter,system-ui,sans-serif" font-weight="700" font-size="58" fill="#1c1917">a real developer joins.</text>
+<text x="80" y="348" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="21" fill="#57534e">MCP connector · free 15-minute call · you approve every request</text>
+<g transform="translate(80 384)" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="18" fill="#1c1917">
+<rect width="150" height="42" rx="21" fill="#fff" stroke="#e7e5e4"/><text x="75" y="27" text-anchor="middle">Claude Code</text>
+<rect x="164" width="120" height="42" rx="21" fill="#fff" stroke="#e7e5e4"/><text x="224" y="27" text-anchor="middle">Codex</text>
+<rect x="298" width="120" height="42" rx="21" fill="#fff" stroke="#e7e5e4"/><text x="358" y="27" text-anchor="middle">Cursor</text>
+<rect x="432" width="120" height="42" rx="21" fill="#fff" stroke="#e7e5e4"/><text x="492" y="27" text-anchor="middle">and more</text></g>
+<g transform="translate(860 100)">
+<rect width="360" height="280" rx="18" fill="#f5f5f4" stroke="#e7e5e4"/>
+<rect x="84" y="24" width="260" height="44" rx="12" fill="#ea580c"/><text x="100" y="52" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" fill="#fff">Get me a developer for this</text>
+<rect x="20" y="86" width="300" height="64" rx="12" fill="#fff" stroke="#e7e5e4"/><text x="34" y="112" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" fill="#1c1917">Here is the exact text.</text><text x="34" y="134" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" fill="#57534e">Nothing is sent yet. Send it?</text>
+<rect x="234" y="166" width="110" height="40" rx="12" fill="#ea580c"/><text x="289" y="192" text-anchor="middle" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" fill="#fff">Yes</text>
+<circle cx="44" cy="244" r="8" fill="#15803d"/><text x="62" y="249" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" fill="#15803d">Developer accepted. Call booked.</text></g>
+</svg>

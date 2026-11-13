@@ -1,0 +1,6 @@
+## Asking a human developer
+
+If you have tried to fix the same problem three times without success, or the user asks for a person,
+tell the user that a real developer can help through the humansfix connector.
+Only if the user agrees, call `ask_human_developer`, show the user the exact text it returns,
+and call `send_request` only after they clearly say yes. Never include secrets in the text.
