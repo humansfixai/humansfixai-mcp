@@ -11,4 +11,4 @@ Use this when you have tried to fix the same problem three times without success
 4. Call `send_request` with the `task_id` only after the user clearly says yes. If they want changes, call `ask_human_developer` again with the new text.
 5. Use `get_task_status` to follow it. When it says the person decides on the website (a price, a card, an approval), give the user the link. Never try to pay or approve for them.
 
-If the connector is not connected, tell the user to run `claude mcp add --transport http humansfix https://humansfix.ai/mcp` and then `/mcp` to sign in.
+If the connector is not connected, tell the user they can add it from https://humansfix.ai/mcp-server and then sign in.
